@@ -24,5 +24,6 @@ Route::controller(PortfolioController::class)
     ->group(function () {
         Route::get('/aboutme', 'aboutme')->name('aboutme');
         Route::get('/portfolio', 'portfolio')->name('portfolio');
+        Route::get('/portfolio/{id}', 'singleportfolio')->name('singleportfolio');
         Route::get('/experience', 'experience')->name('experience');
     });

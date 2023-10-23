@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 
 class PortfolioController extends Controller
@@ -29,5 +30,27 @@ class PortfolioController extends Controller
         $json = Storage::json('/public/data/portfolio.json',JSON_THROW_ON_ERROR);
 
          return view('portfolio',compact('json'));
+    }
+    public function singleportfolio($id){
+
+        $json = Storage::json('/public/data/portfolio.json',JSON_THROW_ON_ERROR);
+
+        $filteredArray = Arr::where($json, function ($value) use ($id) {
+            return $value['id'] == $id;
+        });
+
+        if(count($filteredArray)){
+            $merged_array=array_merge(...$filteredArray);
+            ['description'=>$description,'image'=>$image]=$merged_array;
+            return view('singleportfolio',compact('description','image'));
+        }
+
+        if(!count($filteredArray)){
+             abort(code:404,message:"The page does not exist");
+
+        }
+
+
+
     }
 }
