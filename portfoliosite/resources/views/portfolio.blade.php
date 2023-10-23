@@ -20,10 +20,25 @@
             </h3>
 
             <div class="mx-auto grid w-full grid-cols-1 gap-8 pt-12 sm:w-3/4 md:gap-10 lg:w-full lg:grid-cols-2">
-                <a href="/" class="mx-auto transform transition-all hover:scale-105 md:mx-0">
-                    <img src="/assets/img/portfolio-apple.jpeg" class="w-full shadow" alt="portfolio image">
-                </a>
-                <a href="/" class="mx-auto transform transition-all hover:scale-105 md:mx-0">
+                @foreach ($json as $value)
+                    <div>
+                        <h2 class=" font-header text-4xl font-semibold uppercase text-blue-800 sm:text-5xl lg:text-4xl">
+                            {{ $value['name'] }}
+                        </h2>
+                        {{ $value['description'] }}
+                        <a href="/" class="mx-auto transform transition-all hover:scale-105 md:mx-0">
+                            <img src="{{ asset('images/portfolio/' . $value['image']) }}" class="w-full shadow"
+                                alt="portfolio image">
+                        </a>
+                    </div>
+                @endforeach
+
+
+
+
+
+
+                {{-- <a href="/" class="mx-auto transform transition-all hover:scale-105 md:mx-0">
                     <img src="/assets/img/portfolio-stripe.jpeg" class="w-full shadow" alt="portfolio image">
                 </a>
                 <a href="/" class="mx-auto transform transition-all hover:scale-105 md:mx-0">
@@ -31,7 +46,7 @@
                 </a>
                 <a href="/" class="mx-auto transform transition-all hover:scale-105 md:mx-0">
                     <img src="/assets/img/portfolio-microsoft.jpeg" class="w-full shadow" alt="portfolio image">
-                </a>
+                </a> --}}
             </div>
         </div>
     </body>
